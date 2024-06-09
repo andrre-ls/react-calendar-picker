@@ -3,8 +3,6 @@ import { useMemo } from 'react';
 import { getColor } from './theme';
 import { getDateMonthName, destructureDate, getAllDaysInMonth } from './utils/dates';
 import { BaseDayStyles } from './DayView';
-import ChevronLeft from './assets/chevron-left.svg';
-import ChevronRight from './assets/chevron-right.svg';
 
 const ABBR_WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
@@ -30,7 +28,9 @@ export function MonthView({ date, DayView, headerButton = false, onHeaderButtonC
 			<Header>
 				{headerButton === 'left' && (
 					<HeaderButton onClick={onHeaderButtonClick}>
-						<img src={ChevronLeft} />
+						<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M11.5 6.5L7.5 10.5L11.5 14.5" strokeWidth="1.4" strokeLinejoin="round" />
+						</svg>
 					</HeaderButton>
 				)}
 				<Title>
@@ -38,7 +38,9 @@ export function MonthView({ date, DayView, headerButton = false, onHeaderButtonC
 				</Title>
 				{headerButton === 'right' && (
 					<HeaderButton onClick={onHeaderButtonClick}>
-						<img src={ChevronRight} />
+						<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8.5 14.5L12.5 10.5L8.5 6.5" strokeWidth="1.4" strokeLinejoin="round" />
+						</svg>
 					</HeaderButton>
 				)}
 			</Header>
@@ -97,6 +99,13 @@ const HeaderButton = styled.button`
 
 	&:hover {
 		background-color: ${getColor('neutral-4')};
+	}
+	
+	svg {
+		width: 20px;
+		height: 20px;
+		
+		stroke: ${getColor('neutral-12')};
 	}
 `;
 

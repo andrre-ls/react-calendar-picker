@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { getColor } from './theme';
+import { getColor, getGradient } from './theme';
 
 export const BaseDayStyles = css`
 	width: 48px;
@@ -100,13 +100,7 @@ export const DayView = styled.div<DayViewProps>`
 	${(props) =>
 		(props.$isFirstInRange || props.$isLastInRange) &&
 		css`
-			${props.$isFirstInRange && props.$isLastInRange
-				? css`
-						background: linear-gradient(90deg, transparent, ${getColor('neutral-3')}, transparent);
-				  `
-				: css`
-						background: linear-gradient(${props.$isFirstInRange ? '90deg' : '-90deg'}, transparent, ${getColor('neutral-3')});
-				  `};
+			background: ${getGradient(props.$isFirstInRange && props.$isLastInRange ? 'fade-edges' : props.$isFirstInRange ? 'fade-left' : 'fade-right')};
 		`};
 
 	> * {

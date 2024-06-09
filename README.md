@@ -17,7 +17,7 @@ function MyApp() {
 
 	return (
 		<div>
-			<CalendarPicker onChange={onChange} />
+			<CalendarPicker onChange={onChange} theme="light" />
 		</div>
 	);
 }

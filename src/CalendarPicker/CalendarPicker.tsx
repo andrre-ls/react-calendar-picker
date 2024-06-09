@@ -1,6 +1,6 @@
 import { useRef, useState, useMemo, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { theme, getColor } from './theme';
+import { theme as GlobalTheme, getColor } from './theme';
 import CalendarIcon from './assets/calendar.svg';
 import { MonthView } from './MonthView.tsx';
 import { DayView } from './DayView';
@@ -11,6 +11,7 @@ import { useEscape } from './hooks/useEscape';
 const TODAY = new Date();
 
 type CalenderPickerProps = {
+	theme?: 'light' | 'dark';
 	onChange?: (startDate: Date | undefined, endDatE: Date | undefined) => void;
 };
 
@@ -22,7 +23,7 @@ const SHORTCUTS = [
 	{ label: '3 months', onClick: (date: Date) => sumMonthsToDate(date, 3) },
 ];
 
-export function CalendarPicker({ onChange }: CalenderPickerProps) {
+export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProps) {
 	const root = useRef(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [visibleDate, setVisibleDate] = useState(TODAY);
@@ -94,14 +95,14 @@ export function CalendarPicker({ onChange }: CalenderPickerProps) {
 	useEscape(() => setIsOpen(false));
 
 	useEffect(() => {
-		if (onChange && startDate && endDate && !areDatesInChronologicalOrder(startDate, endDate)) {
+		if (onChange && isOpen && !(startDate && endDate && !areDatesInChronologicalOrder(startDate, endDate))) {
 			onChange(startDate, endDate);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [startDate, endDate, onChange]);
 
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={GlobalTheme[theme]}>
 			<OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
 				<Container ref={root}>
 					<CalendarButton $selected={isOpen} onClick={onButtonClick}>
@@ -159,7 +160,7 @@ const Button = styled.button`
 	line-height: 1.2;
 	white-space: nowrap;
 
-	color: 'neutral-10';
+	color: ${getColor('neutral-10')};
 	border: 1px solid ${getColor('neutral-5')};
 	border-radius: 8px;
 	background-color: ${getColor('neutral-1')};
@@ -229,8 +230,9 @@ const Drawer = styled.div`
 	border: 1px solid ${getColor('neutral-5')};
 	border-radius: 12px;
 	background-color: ${getColor('neutral-1')};
-
 	box-shadow: 0px 16px 32px 0px hsla(0, 0%, 0%, 0.04);
+	
+	z-index: 2;
 `;
 
 const Container = styled.div`
