@@ -48,6 +48,8 @@ export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProp
 				const isFirstInRange = inRange && (index === 0 || date.getDay() === 0 || datesMatch(sumDaysToDate(date, -1), startDate));
 				const isLastInRange = inRange && (isLastDayOfMonth(date) || date.getDay() === 6 || datesMatch(sumDaysToDate(date, 1), endDate));
 
+				const merge = isSelected && !(startDate && endDate && (startDate.getDay() === 0 || endDate.getDay() === 0) && startDate.getDay() + endDate.getDay() === 6);
+
 				function onDayClick() {
 					if (!startDate) {
 						return setStartDate(date);
@@ -74,7 +76,7 @@ export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProp
 						$inRange={inRange}
 						$isFirstInRange={isFirstInRange}
 						$isLastInRange={isLastInRange}
-						data-merge={isSelected}
+						data-merge={merge}
 						onClick={onDayClick}
 					>
 						<span>{date.getDate()}</span>
@@ -231,7 +233,7 @@ const Drawer = styled.div`
 	border-radius: 12px;
 	background-color: ${getColor('neutral-1')};
 	box-shadow: 0px 16px 32px 0px hsla(0, 0%, 0%, 0.04);
-	
+
 	z-index: 2;
 `;
 
