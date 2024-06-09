@@ -2,6 +2,7 @@
 
 Significa Front-end [Calendar Picker challenge](https://github.com/significa/frontend-challenge/tree/main/calendar-picker). Implemented in ~4 hours.
 
+
 ## Usage
 
 ```tsx
@@ -25,7 +26,7 @@ function MyApp() {
 
 ## Development
 
-1. Ensure you are using a compatible node version (see [.nvmrc](./.nvmrc)
+1. Ensure you are using a compatible node version (see [.nvmrc](./.nvmrc))
 2. Install the dependencies with `npm install`.
 3. Start the development server using `npm run dev`.
 
