@@ -1,6 +1,6 @@
 # React Calendar Picker
 
-Significa Front-end [Calendar Picker challenge](https://github.com/significa/frontend-challenge/tree/main/calendar-picker). Implemented in ~4 hours.
+Implementation of Significa's Front-end [Calendar Picker challenge](https://github.com/significa/frontend-challenge/tree/main/calendar-picker).
 
 
 ## Usage
