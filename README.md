@@ -34,3 +34,9 @@ function MyApp() {
 
 1. Run `npm run build`
 2. Optionally, preview the build locally with `npm run preview`.
+
+
+## Fonts
+
+1. Inter ([Google Fonts](https://fonts.google.com/specimen/Inter?query=inter))
+1. Roboto Mono ([Google Fonts](https://fonts.google.com/specimen/Roboto+Mono?query=roboto+mono))
