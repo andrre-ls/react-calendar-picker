@@ -21,6 +21,9 @@ export const Button = styled.button`
 
 	cursor: pointer;
 
+	transition: color 0.2s ease-out;
+	transition-property: color, background-color;
+
 	&:focus-visible {
 		outline: none;
 		border-color: ${getColor('neutral-12')};

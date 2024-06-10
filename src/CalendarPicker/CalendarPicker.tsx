@@ -204,6 +204,19 @@ const Drawer = styled.div`
 	box-shadow: 0px 16px 32px 0px hsla(0, 0%, 0%, 0.04);
 
 	z-index: 2;
+
+	animation: enter-animation 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+	@keyframes enter-animation {
+		0% {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0%);
+		}
+	}
 `;
 
 interface CalendarButtonProps {
