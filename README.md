@@ -2,6 +2,8 @@
 
 Implementation of Significa's Front-end [Calendar Picker challenge](https://github.com/significa/frontend-challenge/tree/main/calendar-picker).
 
+[→ Demo](https://andrre-ls.github.io/react-calendar-picker/)
+
 
 ## Usage
 
