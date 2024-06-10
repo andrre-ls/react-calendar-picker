@@ -17,6 +17,7 @@ export const BaseDayStyles = css`
 
 interface DayViewProps {
 	$shift: number;
+	$fade: boolean;
 	$isToday: boolean;
 	$isSelected: boolean;
 	$inRange: boolean;
@@ -34,8 +35,10 @@ export const Day = styled.div<DayViewProps>`
 	color: var(--color);
 	background-color: transparent;
 	border: none;
+	opacity: ${(props) => (props.$fade ? 0.5 : 1)};
 
 	cursor: pointer;
+
 
 	// button background
 	&:before {

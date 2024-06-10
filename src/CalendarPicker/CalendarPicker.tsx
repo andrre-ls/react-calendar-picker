@@ -40,7 +40,7 @@ export type CalenderPickerProps = {
 };
 
 export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProps) {
-	const uid = useId()
+	const uid = useId();
 	const root = useRef(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [visibleDate, setVisibleDate] = useState(TODAY);
@@ -107,6 +107,7 @@ export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProp
 			$inRange: inRange,
 			$isFirstInRange: isFirstInRange,
 			$isLastInRange: isLastInRange,
+			$fade: !(startDate && endDate) && !isToday && areDatesInChronologicalOrder(date, TODAY),
 			'data-merge': merge,
 		};
 	}
