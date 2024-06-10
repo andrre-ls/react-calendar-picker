@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useId, useRef, useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { theme as GlobalTheme, getColor } from './theme';
@@ -40,6 +40,7 @@ export type CalenderPickerProps = {
 };
 
 export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProps) {
+	const uid = useId()
 	const root = useRef(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [visibleDate, setVisibleDate] = useState(TODAY);
@@ -114,19 +115,21 @@ export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProp
 		<ThemeProvider theme={GlobalTheme[theme]}>
 			<OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
 				<Container ref={root}>
-					<CalendarButton $selected={isOpen && !!startDate && !!endDate} onClick={onCalendarButtonClick}>
+					<CalendarButton $selected={isOpen && !!startDate && !!endDate} onClick={onCalendarButtonClick} aria-expanded={isOpen} aria-controls={uid}>
 						<img src={CalendarIcon} alt="calendar icon" />
 						<CalendarButtonLabel>
 							{(!startDate || !endDate) && <span>Select date</span>}
 							{startDate && endDate && (
 								<span>
-									{stringifyDate(startDate)} — {stringifyDate(endDate)}
+									<time>{stringifyDate(startDate)}</time>
+									<span> — </span>
+									<time>{stringifyDate(endDate)}</time>
 								</span>
 							)}
 						</CalendarButtonLabel>
 					</CalendarButton>
 					{isOpen && (
-						<Drawer>
+						<Drawer id={uid}>
 							<CalendarView>
 								{[visibleDate, sumMonthsToDate(visibleDate, 1)].map((monthDate, index) => {
 									const { month, year } = destructureDate(monthDate);
@@ -142,8 +145,8 @@ export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProp
 														</svg>
 													</MonthViewHeaderButton>
 												)}
-												<MonthViewTitle>
-													<span>{getDateMonthName(monthDate)}</span> — <span>{monthDate.getUTCFullYear()}</span>
+												<MonthViewTitle as="time" date-time={`${monthDate.getFullYear()}-${monthDate.getMonth() + 1}`}>
+													<span>{getDateMonthName(monthDate)}</span> — <span>{monthDate.getFullYear()}</span>
 												</MonthViewTitle>
 												{index !== 0 && (
 													<MonthViewHeaderButton onClick={() => sumVisibleDate(1)}>

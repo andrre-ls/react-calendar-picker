@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { getColor } from './theme';
 import { BaseDayStyles } from './Day.styled';
 
-export const MonthViewCalendar = styled.div`
+export const MonthViewCalendar = styled.main`
 	width: fit-content;
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
