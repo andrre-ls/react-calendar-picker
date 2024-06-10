@@ -114,7 +114,7 @@ export function CalendarPicker({ onChange, theme = 'light' }: CalenderPickerProp
 		<ThemeProvider theme={GlobalTheme[theme]}>
 			<OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
 				<Container ref={root}>
-					<CalendarButton $selected={isOpen} onClick={onCalendarButtonClick}>
+					<CalendarButton $selected={isOpen && !!startDate && !!endDate} onClick={onCalendarButtonClick}>
 						<img src={CalendarIcon} alt="calendar icon" />
 						<CalendarButtonLabel>
 							{(!startDate || !endDate) && <span>Select date</span>}
