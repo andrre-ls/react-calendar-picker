@@ -24,7 +24,7 @@ interface DayViewProps {
 	$isLastInRange: boolean;
 }
 
-export const DayView = styled.div<DayViewProps>`
+export const Day = styled.div<DayViewProps>`
 	${BaseDayStyles}
 
 	position: relative;
